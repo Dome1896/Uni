@@ -1,11 +1,12 @@
-from apihandler import APIHandler
 import re
+import random
 class Question:
-   
-    def __init__(self, title, questionText):
+    
+    def __init__(self, title, questionText, perfectAnswer = ""):
         self.title = title
         self.questionText = questionText
-        
+        self.__perfectAnswer = perfectAnswer
+        self.tableName = "questions"    
         
         
     def getPerfectAnswer(self):
@@ -18,9 +19,17 @@ class Question:
         while (True):
             conformity = apiHandler.getQuestionAnswerConformityInPercent(self, userAnswer)
             conformity = re.sub(r"\D", "", conformity)
-            if len(conformity) <= 2 and conformity.isdigit():
+            if len(conformity) <= 3 and conformity.isdigit():
                 break
-        return conformity 
-
+        return conformity
+    
+    def makeRequestBody(self):
+        return {"title": self.title , "questionText" : self.questionText, "perfectAnswer" : self.__perfectAnswer}
+     
+class QuestionChooser:
+    def getRandomQuestion(allQuestionsAsJson):
+        randomQuestionID = random.randint(0, len(allQuestionsAsJson)-1)
+        return allQuestionsAsJson[randomQuestionID]
+        
         
         
