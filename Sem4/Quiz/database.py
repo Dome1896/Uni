@@ -12,7 +12,8 @@ class Database:
             'Authorization' : 'Bearer ' + self.__apikey
         }
     def getAllDataFromOneTable(self, tableName):
-        url = f"{self.__url}{tableName}&select=*"
+        url = f"{self.__url}{tableName}?select=*"
+        self.__headers
         response = requests.get(url=url, headers=self.__headers)
         return response
     
@@ -35,7 +36,7 @@ class Database:
     def __getApiKey(self):
         cfp = ConfigParser()
         try:
-            cfp.read("config.ini")
+            cfp.read("./config.ini")
             self.__apikey = cfp.get("Database", "apikey")
         except:
             print("config.ini is missing or wrong")
@@ -56,5 +57,5 @@ class Database:
         except:
             print("config.ini is missing or wrong")
 
-db = Database()
-print(db.getDataFromTableWithFilter("users", "id" , "1"))
+#db = Database()
+#print(db.getDataFromTableWithFilter("users", "id" , "1"))

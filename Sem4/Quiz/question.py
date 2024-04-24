@@ -25,6 +25,9 @@ class Question:
     
     def makeRequestBody(self):
         return {"title": self.title , "questionText" : self.questionText, "perfectAnswer" : self.__perfectAnswer}
+    
+    def toString(self):
+        return f"Title: {self.title} \nQuestion: {self.questionText}"
      
 class QuestionChooser:
     def getRandomQuestion(allQuestionsAsJson):
