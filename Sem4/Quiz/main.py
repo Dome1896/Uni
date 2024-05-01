@@ -23,12 +23,15 @@ if (input("l for login OR r for register: ") == "r"):
 loginUsername= input("loging username: ")
 user = User(loginUsername)
 
-# apiHandler = APIHandler()
-# print(apiHandler.generatePerfectAnswer("Warum schwimmen Schiffe?"))
-# test = Question(title="Akkulaufzeit", questionText="Wie lange hält ein Akku mit 4500 mAh?", perfectAnswer="ca. 9 Stunden")
-# db.setDataToDB(test)
-# game loop auf den
+# if user says yes, gets the code to create a new question
+if (input("Möchtest du eine Frage anlegen? (y/n): ") == "y"):
+    title = input("Fragentitel eingeben: ")
+    questionText = input("Gebe deine Frage ein: ")
+    newQuestion = Question(title=title, questionText=questionText)
+    newQuestion.setPerfectAnswer(apiHandler=apiHandler)
+    db.setDataToDB(newQuestion)
 
+    
 # erhalten aller fragen
 allQuestions = db.getAllDataFromOneTable("questions").json()
 # es wird eine zufällige Frage ausgewählt
@@ -40,14 +43,6 @@ print(question.toString())
 userAnswer = input("Antwort eingeben: ")
 # die Antwort wird mit der Perfekten Antwort verglichen
 percentage = question.getQuestionAnswerConformityInPercent(apiHandler, userAnswer)
+print(percentage)
 # der User erhält seine Punkte
-user.updateTotalPointsInDB(questionPoints=percentage, database=db)      
-
-# question = Question("Schwimmfähigkeit von Schiffen", "Warum Schwimmen schiffe?")
-# question.setPerfectAnswer(apiHandler)
-
-# print(question.getPerfectAnswer())
-# print(f"{question.title}\nWas ist die Antwort auf die Frage: {question.questionText}")
-# userAnswer = input(f"{question.title}\nWas ist die Antwort auf die Frage: {question.questionText}")
-# print (f"Deine Anwort ist zu {question.getQuestionAnswerConformityInPercent(apiHandler, userAnswer)}% richtig")
-
+user.updateTotalPointsInDB(questionPoints=int(percentage), database=db)      

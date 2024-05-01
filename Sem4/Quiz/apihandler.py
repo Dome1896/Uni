@@ -22,7 +22,7 @@ class APIHandler:
         completion = self.client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-            {"role": "system", "content": "Just Answer with a Number between 0 and 100"},
+            #{"role": "system", "content": "Just Answer with a Number between 0 and 100"},
             {"role": "user", "content": f"PerfectAnswer: {question.getPerfectAnswer()} \n Users Answer: {userAnswer} \n For how much percentage does the User Answer fits the Perfect Answer"
              
              }

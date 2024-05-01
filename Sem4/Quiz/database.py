@@ -24,7 +24,7 @@ class Database:
     
     def updateOneValue(self, tableName, attributeKey, attributeValue, newAttributeKey, newAttributeValue):
         url = url = f"{self.__url}{tableName}?{attributeKey}=eq.{attributeValue}"
-        requests.patch(url=url, header=self.__headers, json={newAttributeKey : newAttributeValue})
+        requests.patch(url=url, headers=self.__headers, json={newAttributeKey : newAttributeValue})
 
     def setDataToDB(self, object):
         url = f"{self.__url}{object.tableName}"
