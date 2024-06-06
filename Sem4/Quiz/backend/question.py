@@ -1,5 +1,6 @@
 import re
 import random
+from apihandler import APIHandler
 class Question:
     
     def __init__(self, title, questionText, perfectAnswer = ""):
@@ -12,10 +13,10 @@ class Question:
     def getPerfectAnswer(self):
         return self.__perfectAnswer
     
-    def setPerfectAnswer(self, apiHandler):
+    def setPerfectAnswer(self, apiHandler : APIHandler):
         self.__perfectAnswer = apiHandler.generatePerfectAnswer(self.questionText)
 
-    def getQuestionAnswerConformityInPercent(self, apiHandler, userAnswer):
+    def getQuestionAnswerConformityInPercent(self, apiHandler : APIHandler, userAnswer):
         while (True):
             conformity = apiHandler.getQuestionAnswerConformityInPercent(self, userAnswer)
             conformity = re.sub(r"\D", "", conformity)

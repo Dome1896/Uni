@@ -2,9 +2,12 @@ from apihandler import APIHandler
 from question import Question, QuestionChooser
 from database import Database
 from user import User, UserRegister
+from unittests import Unittest
 
 apiHandler = APIHandler()
 db = Database()
+ut = Unittest()
+print(ut.runAllTest())
 
 # register
 if (input("l for login OR r for register: ") == "r"):
@@ -43,6 +46,9 @@ print(question.toString())
 userAnswer = input("Antwort eingeben: ")
 # die Antwort wird mit der Perfekten Antwort verglichen
 percentage = question.getQuestionAnswerConformityInPercent(apiHandler, userAnswer)
-print(percentage)
+print(f"Deine Antwort ist zu {percentage}% richtig.")
+print(f"Die perfekte Antwort wäre \"{question.getPerfectAnswer()}\" gewesen.")
 # der User erhält seine Punkte
-user.updateTotalPointsInDB(questionPoints=int(percentage), database=db)      
+user.updateTotalPointsInDB(questionPoints=int(percentage), database=db)     
+
+
