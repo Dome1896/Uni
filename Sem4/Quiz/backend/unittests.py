@@ -14,6 +14,7 @@ class Unittest:
 
     def __getConfirmityInPercent_Test_100(self):
         question = Question(title="Title", questionText="Wie lautet des 1.Artikel des Grundgesetztes?", perfectAnswer="Die würde des Menschen ist unantastbar")
-        if question.getQuestionAnswerConformityInPercent(apiHandler=self.apiHandler, userAnswer="Die würde des Menschen ist unantastbar") == "100":
+        percentage = question.getQuestionAnswerConformityInPercent(apiHandler=self.apiHandler, userAnswer="Die würde des Menschen ist unantastbar")
+        if percentage == "100":
             return True
-        return False
+        return False, percentage
