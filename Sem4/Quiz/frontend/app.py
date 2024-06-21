@@ -21,16 +21,35 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from backend.controller import Controller
 
 class LoginWindow(Screen):
-    pass
+    def login(self):
+        Controller.user_login(self.ids.username.text)
 
 class MainWindow(Screen):
-    pass
+    def __init__(self, **kwargs):
+        super(MainWindow, self).__init__(**kwargs)
+        #self.ids.welcome_msg.text = f"Hallo {Controller.user.username}, du hast aktuell {Controller.user.get_total_points()}"
+
+    def get_all_question(self):
+        Controller.get_all_questions()
 
 class AddQuestionsWindow(Screen):
-    pass
+    def save_data(self):
+        title = self.ids.frageTitel_input.text
+        question_input = self.ids.frage_input.text
+        perfect_answer = Controller.create_question(title=title, questionText=question_input)
+        self.ids.antwort_input.text = perfect_answer
 
 class QuizWindow(Screen):
-    pass
+    def next_question(self, instance):
+        Controller.next_question()
+        self.ids.frageTitel_label.text = Controller.question.title
+        self.ids.frage_label.text = Controller.question.questionText
+        self.ids.next_question.bind(on_release=self.reveal_answer)
+
+    def reveal_answer(self, instance):
+       self.ids.perfect_answer_label.text = Controller.question.getPerfectAnswer()
+       self.ids.points_label.text = "Punkte: " + Controller.get_points(user_answer=self.ids.Quiz_antwort_input.text)
+       self.ids.next_question.bind(on_release=self.next_question)
 
 class PopupRegister(Popup):
     pass

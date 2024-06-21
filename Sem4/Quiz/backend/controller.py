@@ -10,9 +10,8 @@ class Controller:
     
     #----------- Start LOGIN --------------
     @classmethod
-    def user_login(cls, username, password):
-        cls.user: User
-        pass
+    def user_login(cls, username):
+        cls.user = User(username=username)
 
     @classmethod
     def user_reg(cls, username, password):
@@ -28,13 +27,13 @@ class Controller:
     #----------- Start Quiz -------------
     @classmethod
     def next_question(cls):
-        chosenQuestion =  QuestionChooser.getRandomQuestion(cls.all_questions)
+        chosenQuestion =  QuestionChooser.getRandomQuestion(cls.all_questions.json())
         cls.question = Question(chosenQuestion["title"], chosenQuestion["questionText"], chosenQuestion["perfectAnswer"])
     
     @classmethod
     def get_points(cls, user_answer):
         points = cls.question.getQuestionAnswerConformityInPercent(cls.apiHandler,user_answer)
-        cls.user.updateTotalPointsInDB(points, cls.db)
+        cls.user.updateTotalPointsInDB(int(points), cls.db)
         return points
     #----------- End QUIZ ---------------
 
@@ -42,7 +41,12 @@ class Controller:
     @classmethod
     def create_question(cls, title, questionText):
         question = Question(title=title, questionText=questionText)
-        perfect_answer = question.getPerfectAnswer(cls.apiHandler)
-        cls.db.setDataToDB(question)
-        return perfect_answer
+        question.setPerfectAnswer(cls.apiHandler)
+        # Frage im zwischenspeicher Speichern
+        cls.cache_question = question
+        return question.getPerfectAnswer()
+    
+    @classmethod
+    def save_question(cls):
+        cls.db.setDataToDB(cls.cache_question)
     #----------- End CREATE QUESTION ---------------

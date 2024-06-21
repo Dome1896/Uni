@@ -29,6 +29,7 @@ ScreenManager:
             size_hint:(0.25,0.07)
             background_color: 0,0,0,0
             on_release:
+                root.get_all_question()
                 app.root.current = "quiz"
                 root.manager.transition.direction = "left"
             Image:
@@ -51,7 +52,6 @@ ScreenManager:
                 size:(175,175)   
         Label:
             id: welcome_msg
-            text: "Hallo Dominik, du wiegst aktuell 120KG!"
             font_name: "Impact"
             pos_hint: {"center_x": 0.5, "center_y": 0.42}
 
@@ -61,6 +61,7 @@ ScreenManager:
             on_release: 
                 app.root.current = "login"
                 root.manager.transition.direction = "right"
+                
 
 <LoginWindow>:
     name: "login"
@@ -102,6 +103,7 @@ ScreenManager:
             pos_hint:{"center_x": 0.5 , "center_y": 0.1}
             size_hint:(0.1,0.05)
             on_release: 
+                root.login()
                 app.root.current = "main"
                 root.manager.transition.direction = "left"
 
@@ -144,7 +146,7 @@ ScreenManager:
             pos_hint: {"center_x": 0.5, "center_y": 0.75}
             size_hint:( 0.35,0.35)
         Button:
-            pos_hint: {"center_x": 0.5, "center_y": 0.03}
+            pos_hint: {"center_x": 0.5, "center_y": 0.7}
             size_hint:(0.1,0.05)
             on_release: 
                 app.root.current = "main"
@@ -165,6 +167,13 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'y': 0.1}
             size_hint: 0.25, 0.1
 
+        Button:
+            pos_hint: {"center_x": 0.5, "center_y": 0.03}
+            text: "Frage speichern"
+            size_hint:(0.1,0.05)
+            on_release: 
+                root.save_data()
+
 <QuizWindow>:
     name: "quiz"
     canvas.before:
@@ -179,13 +188,13 @@ ScreenManager:
             pos_hint: {"center_x": 0.5, "center_y": 0.85}
             size_hint:( 0.2,0.2)
         Label:
-            id: frageTitel_input
+            id: frageTitel_label
             text: "FrageTitel"
             font_name: "Impact"
             pos_hint: {"center_x": 0.5, "center_y": 0.65}
             font_size: 28
         Label:
-            id: frage_input
+            id: frage_label
             text: "Frage"
             font_name: "Impact"
             pos_hint: {"center_x": 0.5, "center_y": 0.47} 
@@ -196,8 +205,24 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'y': 0.2}
             size_hint: 0.25, 0.1
         Button:
-            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            pos_hint: {"center_x": 0.1, "center_y": 0.1}
             size_hint:(0.1,0.05)
             on_release: 
                 app.root.current = "main"
                 root.manager.transition.direction = "right"
+        Button:
+            id: next_question
+            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            size_hint:(0.1,0.05)
+            on_release: 
+                root.next_question(self)
+        Label:
+            id: points_label
+            font_name: "Impact"
+            pos_hint: {"center_x": 0.8, "center_y": 0.47} 
+            font_size: 28  
+        Label:
+            id: perfect_answer_label
+            font_name: "Impact"
+            pos_hint: {"center_x": 0.8, "center_y": 0.47} 
+            font_size: 28  

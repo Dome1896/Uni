@@ -7,6 +7,9 @@ class User:
         self.__totalPoints = db.getDataFromTableWithFilter(self.tableName, "username", self.username)[0]["totalPoints"]
         
 
+    def get_total_points(self):
+        return self.__totalPointsS
+
     def updateTotalPointsInDB(self, questionPoints, database : Database):
         self.__totalPoints += questionPoints 
         database.updateOneValue(self.tableName, "username", self.username, "totalPoints", self.__totalPoints)

@@ -32,7 +32,7 @@ class Question:
      
 class QuestionChooser:
     @classmethod
-    def getRandomQuestion(allQuestionsAsJson):
+    def getRandomQuestion(cls,allQuestionsAsJson):
         randomQuestionID = random.randint(0, len(allQuestionsAsJson)-1)
         return allQuestionsAsJson[randomQuestionID]
         
