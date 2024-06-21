@@ -13,6 +13,12 @@ from kivy.animation import Animation
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
 from kivy.uix.scrollview import ScrollView
+import sys
+import os
+
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from backend.controller import Controller
 
 class LoginWindow(Screen):
     pass

@@ -1,6 +1,6 @@
 import re
 import random
-from apihandler import APIHandler
+from backend.apihandler import APIHandler
 class Question:
     
     def __init__(self, title, questionText, perfectAnswer = ""):
@@ -31,6 +31,7 @@ class Question:
         return f"Title: {self.title} \nQuestion: {self.questionText}"
      
 class QuestionChooser:
+    @classmethod
     def getRandomQuestion(allQuestionsAsJson):
         randomQuestionID = random.randint(0, len(allQuestionsAsJson)-1)
         return allQuestionsAsJson[randomQuestionID]

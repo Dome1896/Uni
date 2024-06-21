@@ -1,6 +1,6 @@
-from apihandler import APIHandler
-from question import Question
-from user import *
+from backend.apihandler import APIHandler
+from backend.question import Question
+from backend.user import *
 class Unittest:
 
     def __init__(self):
