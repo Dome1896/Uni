@@ -1,20 +1,121 @@
 #:kivy 1.0.9
 ScreenManager:
+    
+    LoginWindow:
     MainWindow:
+    AddQuestionsWindow:
+    QuizWindow:
 
 
 <MainWindow>:
+    name: "main"
     FloatLayout:
+        canvas.before:
+            Color: 
+                rgba: 5/255,0/255,25/255,1
+            Rectangle:
+                pos: self.pos
+                size:self.size
+        Image:
+            source: "logoo.png"
+            pos_hint: {"center_x": 0.5, "center_y": 0.75}
+            size_hint:( 0.35,0.35)
+
+        Image:
+            source: "sb.jpg"
+            pos_hint: {"center_y": 0.9}
+            size_hint:(0.2,0.2)
+
         Button:
+            pos_hint: {"center_x": 0.5, "center_y": 0.25}
+            size_hint:(0.25,0.07)
             background_color: 0,0,0,0
-            font_size: 16
-            size_hint: (0.2, 0.05)
-            pos_hint: {"center_x": 0.5, "y": 0.05}
+            on_release:
+                app.root.current = "quiz"
+                root.manager.transition.direction = "left"
             Image:
-                source: "sb.jpg"
+                source: "button.png"
                 center_x: self.parent.center_x
                 center_y: self.parent.center_y
-                size_hint: (0.1,0.025)
+                size:(200,200)
 
-                
+        Button:
+            pos_hint: {"center_x": 0.5, "center_y": 0.15}
+            size_hint:(0.2,0.05)
+            background_color: 0,0,0,0
+            on_release:
+                app.root.current = "addQuestions"
+                root.manager.transition.direction = "up"
+            Image:
+                source: "add_questions.png"
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+                size:(175,175)   
+        Label:
+            id: welcome_msg
+            text: "Hallo Dominik, du wiegst aktuell 120KG!"
+            font_name: "Impact"
+            pos_hint: {"center_x": 0.5, "center_y": 0.42}
+
+        Button:
+            pos_hint: {"center_x": 0, "center_y": 0.5}
+            size_hint:(0.1,0.1)
+            on_release: 
+                app.root.current = "login"
+                root.manager.transition.direction = "right"
+            
+
+<LoginWindow>:
+    name: "login"
+    canvas.before:
+        Color:
+            rgba: 5/255,0/255,25/255,1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    
+    FloatLayout:
+        Button:
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            size_hint:(0.1,0.1)
+            on_release: 
+                app.root.current = "main"
+                root.manager.transition.direction = "left"
+
+<AddQuestionsWindow>:
+    name: "addQuestions"
+    canvas.before:
+        Color:
+            rgba: 5/255,0/255,25/255,1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    
+    FloatLayout:
+        Button:
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            size_hint:(0.1,0.1)
+            on_release: 
+                app.root.current = "main"
+                root.manager.transition.direction = "down"
+
+<QuizWindow>:
+    name: "quiz"
+    canvas.before:
+        Color:
+            rgba: 5/255,0/255,25/255,1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    
+    FloatLayout:
+        Button:
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            size_hint:(0.1,0.1)
+            on_release: 
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+
+
+
 

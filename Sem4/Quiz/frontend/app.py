@@ -14,8 +14,16 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
 from kivy.uix.scrollview import ScrollView
 
+class LoginWindow(Screen):
+    pass
+
+class QuizWindow(Screen):
+    pass
 
 class MainWindow(Screen):
+    pass
+
+class AddQuestionsWindow(Screen):
     pass
 
 class FragenApp(App):
