@@ -17,13 +17,16 @@ from kivy.uix.scrollview import ScrollView
 class LoginWindow(Screen):
     pass
 
-class QuizWindow(Screen):
-    pass
-
 class MainWindow(Screen):
     pass
 
 class AddQuestionsWindow(Screen):
+    pass
+
+class QuizWindow(Screen):
+    pass
+
+class PopupRegister(Popup):
     pass
 
 class FragenApp(App):
@@ -31,6 +34,10 @@ class FragenApp(App):
         kv = Builder.load_file("my.kv")
         self.icon = "sb.jpg"
         return kv
+
+    def show_register_popup(self):
+        popup = PopupRegister()
+        popup.open()
 
 if __name__ == "__main__":
     FragenApp().run()

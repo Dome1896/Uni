@@ -1,17 +1,15 @@
 #:kivy 1.0.9
 ScreenManager:
-    
     LoginWindow:
     MainWindow:
     AddQuestionsWindow:
     QuizWindow:
 
-
 <MainWindow>:
     name: "main"
     FloatLayout:
         canvas.before:
-            Color: 
+            Color:
                 rgba: 5/255,0/255,25/255,1
             Rectangle:
                 pos: self.pos
@@ -63,7 +61,6 @@ ScreenManager:
             on_release: 
                 app.root.current = "login"
                 root.manager.transition.direction = "right"
-            
 
 <LoginWindow>:
     name: "login"
@@ -95,20 +92,43 @@ ScreenManager:
             hint_text: "Enter Password"
             pos_hint: {'center_x': 0.5, 'y': 0.2}
             size_hint: 0.25, 0.1
-        
         Button:
+            id: signupButton
+            text: "Sign Up"
             pos_hint: {"center_x": 1, "center_y": 0.5}
-            size_hint:(0.1,0.1)
-            on_release: 
-                app.root.current = "main"
-                root.manager.transition.direction = "left"
+            size_hint:(0.2,0.1)
+            on_release: app.show_register_popup()
         Button: 
             pos_hint:{"center_x": 0.5 , "center_y": 0.1}
             size_hint:(0.1,0.05)
             on_release: 
                 app.root.current = "main"
                 root.manager.transition.direction = "left"
-        
+
+<PopupRegister>:
+    title: "Register"
+    size_hint: 0.75, 0.75
+    auto_dismiss: True
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        TextInput:
+            id: username
+            hint_text: "Enter Username"
+            size_hint_y: None
+            height: 40
+        TextInput:
+            id: password
+            hint_text: "Enter Password"
+            size_hint_y: None
+            height: 40
+        Button:
+            id: addUser
+            text: "Sign Up"
+            size_hint_y: None
+            height: 40
+            on_release: root.dismiss()
 
 <AddQuestionsWindow>:
     name: "addQuestions"
@@ -181,7 +201,3 @@ ScreenManager:
             on_release: 
                 app.root.current = "main"
                 root.manager.transition.direction = "right"
-
-
-
-
