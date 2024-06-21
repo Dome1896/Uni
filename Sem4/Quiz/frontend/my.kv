@@ -73,14 +73,42 @@ ScreenManager:
         Rectangle:
             size: self.size
             pos: self.pos
-    
+
     FloatLayout:
+        Image:
+            source: "zicke.jpg"
+            pos_hint: {"center_x": 0.5, "center_y": 0.75}
+            size_hint:( 0.45,0.45)
+        Label:
+            id: slogan_msg
+            text: "Quizy – Intelligente Unterhaltung."
+            font_name: "Impact"
+            pos_hint: {"center_x": 0.5, "center_y": 0.52}  
+        TextInput:
+            id: username
+            hint_text: "Enter Username"
+            pos_hint: {'center_x': 0.5, 'y': 0.35}
+            size_hint: 0.25, 0.1
+        
+        TextInput:
+            id: password
+            hint_text: "Enter Password"
+            pos_hint: {'center_x': 0.5, 'y': 0.2}
+            size_hint: 0.25, 0.1
+        
         Button:
-            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            pos_hint: {"center_x": 1, "center_y": 0.5}
             size_hint:(0.1,0.1)
             on_release: 
                 app.root.current = "main"
                 root.manager.transition.direction = "left"
+        Button: 
+            pos_hint:{"center_x": 0.5 , "center_y": 0.1}
+            size_hint:(0.1,0.05)
+            on_release: 
+                app.root.current = "main"
+                root.manager.transition.direction = "left"
+        
 
 <AddQuestionsWindow>:
     name: "addQuestions"
@@ -90,14 +118,32 @@ ScreenManager:
         Rectangle:
             size: self.size
             pos: self.pos
-    
     FloatLayout:
+        Image:
+            source: "logoo.png"
+            pos_hint: {"center_x": 0.5, "center_y": 0.75}
+            size_hint:( 0.35,0.35)
         Button:
-            pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            size_hint:(0.1,0.1)
+            pos_hint: {"center_x": 0.5, "center_y": 0.03}
+            size_hint:(0.1,0.05)
             on_release: 
                 app.root.current = "main"
                 root.manager.transition.direction = "down"
+        TextInput:
+            id: frageTitel_input
+            hint_text: "Titel der Frage eingeben"
+            pos_hint: {'center_x': 0.5, 'y': 0.4}
+            size_hint: 0.25, 0.1
+        TextInput:
+            id: frage_input
+            hint_text: "Frage eingeben"
+            pos_hint: {'center_x': 0.5, 'y': 0.25}
+            size_hint: 0.25, 0.1
+        TextInput:
+            id: antwort_input
+            hint_text: "Antwort eingeben"
+            pos_hint: {'center_x': 0.5, 'y': 0.1}
+            size_hint: 0.25, 0.1
 
 <QuizWindow>:
     name: "quiz"
@@ -107,11 +153,31 @@ ScreenManager:
         Rectangle:
             size: self.size
             pos: self.pos
-    
     FloatLayout:
+        Image:
+            source: "logoo.png"
+            pos_hint: {"center_x": 0.5, "center_y": 0.85}
+            size_hint:( 0.2,0.2)
+        Label:
+            id: frageTitel_input
+            text: "FrageTitel"
+            font_name: "Impact"
+            pos_hint: {"center_x": 0.5, "center_y": 0.65}
+            font_size: 28
+        Label:
+            id: frage_input
+            text: "Frage"
+            font_name: "Impact"
+            pos_hint: {"center_x": 0.5, "center_y": 0.47} 
+            font_size: 28  
+        TextInput:
+            id: Quiz_antwort_input
+            hint_text: "Antwort eingeben"
+            pos_hint: {'center_x': 0.5, 'y': 0.2}
+            size_hint: 0.25, 0.1
         Button:
-            pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            size_hint:(0.1,0.1)
+            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            size_hint:(0.1,0.05)
             on_release: 
                 app.root.current = "main"
                 root.manager.transition.direction = "right"
