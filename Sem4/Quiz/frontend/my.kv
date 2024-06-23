@@ -115,6 +115,11 @@ ScreenManager:
         orientation: 'vertical'
         padding: 10
         spacing: 10
+        Label:
+            id: message
+            text: "Test"
+            font_name: "Impact"
+            pos_hint: {"center_x": 0.5, "center_y": 0.52}  
         TextInput:
             id: username
             hint_text: "Enter Username"
@@ -130,7 +135,9 @@ ScreenManager:
             text: "Sign Up"
             size_hint_y: None
             height: 40
-            on_release: root.dismiss()
+            on_release: 
+                root.reg_user()
+
 
 <AddQuestionsWindow>:
     name: "addQuestions"
@@ -168,11 +175,12 @@ ScreenManager:
             size_hint: 0.25, 0.1
 
         Button:
+            id: generate_or_save_question
             pos_hint: {"center_x": 0.5, "center_y": 0.03}
-            text: "Frage speichern"
+            text: "Antwort generieren lassen"
             size_hint:(0.1,0.05)
             on_release: 
-                root.save_data()
+                root.generate_answer(self)
 
 <QuizWindow>:
     name: "quiz"

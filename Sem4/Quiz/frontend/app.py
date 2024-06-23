@@ -17,12 +17,14 @@ import sys
 import os
 
 
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from backend.controller import Controller
 
 class LoginWindow(Screen):
     def login(self):
-        Controller.user_login(self.ids.username.text)
+        if not Controller.user_login(self.ids.username.text, self.ids.password.text):
+            self.ids.slogan_msg.text = "Login nicht möglich"
 
 class MainWindow(Screen):
     def __init__(self, **kwargs):
@@ -33,11 +35,25 @@ class MainWindow(Screen):
         Controller.get_all_questions()
 
 class AddQuestionsWindow(Screen):
-    def save_data(self):
+    def generate_answer(self, instance):
+        # Generieren der Antwort
         title = self.ids.frageTitel_input.text
         question_input = self.ids.frage_input.text
         perfect_answer = Controller.create_question(title=title, questionText=question_input)
         self.ids.antwort_input.text = perfect_answer
+        # Anpassen des Buttons
+        self.ids.generate_or_save_question.bind(on_release=self.save_data)
+        self.ids.generate_or_save_question.text = "Frage speichern"
+
+    def save_data(self, instance):
+        # Speichern der Frage
+        Controller.save_question(title= self.ids.frageTitel_input.text, questionText=self.ids.frage_input.text, answer=self.ids.antwort_input.text)
+        self.ids.frageTitel_input.text = ""
+        self.ids.frage_input.text = ""
+        self.ids.antwort_input.text = ""  
+        # Anpassen des Buttons
+        self.ids.generate_or_save_question.text = "Antwort generieren"
+        self.ids.generate_or_save_question.bind(on_release=self.generate_answer)
 
 class QuizWindow(Screen):
     def next_question(self, instance):
@@ -52,7 +68,16 @@ class QuizWindow(Screen):
        self.ids.next_question.bind(on_release=self.next_question)
 
 class PopupRegister(Popup):
-    pass
+    def reg_user(self):
+        if Controller.user_reg(self.ids.username.text, self.ids.password.text):
+            self.ids.message.text = "Registrierung erfolgreich.\nAutomatischer Login"
+            Controller.user_login(self.ids.username.text, self.ids.password.text)
+            app = App.get_running_app()
+            app.root.current = "main"
+            app.root.transition.direction = "left"
+            self.dismiss()
+        else:
+            self.ids.message.text = "Username bereits vergeben"
 
 class FragenApp(App):
     def build(self):

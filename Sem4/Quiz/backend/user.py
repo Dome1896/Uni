@@ -1,8 +1,9 @@
 from backend.database import Database
 class User:
-    def __init__(self, username):
+    def __init__(self, username, password):
         db = Database()
         self.username = username
+        self.password = password
         self.tableName = "users"
         self.__totalPoints = db.getDataFromTableWithFilter(self.tableName, "username", self.username)[0]["totalPoints"]
         
@@ -16,9 +17,10 @@ class User:
 
     
 class UserRegister:
-    def __init__(self, username):
+    def __init__(self, username, password):
        
         self.username = username
+        self.password = password
         if self.__isUsernameAvailable():
             self.__totalPoints = 0
             self.registerSuc = True
@@ -37,4 +39,4 @@ class UserRegister:
         # name ist noch offen
         return True 
     def makeRequestBody(self):
-        return {"username": self.username , "totalPoints" : self.__totalPoints}    
+        return {"username": self.username , "totalPoints" : self.__totalPoints, "password": self.password}    
