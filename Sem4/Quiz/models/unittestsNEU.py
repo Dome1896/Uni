@@ -1,9 +1,9 @@
 import unittest
 from unittest.mock import patch
-from question import Question
-from apihandler import APIHandler
-from database import Database
-from user import * 
+from models.question import Question
+from models.apihandler import APIHandler
+from models.database import Database
+from models.user import * 
 
 class TestQuestion(unittest.TestCase):
     def test_getConfirmityInPercent(self):

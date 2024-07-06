@@ -1,7 +1,7 @@
-from backend.question import *
-from backend.apihandler import APIHandler
-from backend.user import *
-from backend.database import *
+from models.question import *
+from models.apihandler import APIHandler
+from models.user import *
+from models.database import *
 
 import time
 

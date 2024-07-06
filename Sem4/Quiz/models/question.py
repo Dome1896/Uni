@@ -1,6 +1,6 @@
 import re
 import random
-from backend.apihandler import APIHandler
+from models.apihandler import APIHandler
 class Question:
     
     def __init__(self, title, questionText, perfectAnswer = ""):

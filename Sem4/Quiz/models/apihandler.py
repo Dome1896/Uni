@@ -36,7 +36,7 @@ class APIHandler:
     def __getApiKey(self):
         cfp = ConfigParser()
         try:
-            cfp.read("backend/config.ini")
+            cfp.read("config.ini")
             __apikey = cfp.get("API", "apikey")
             return __apikey
         except:

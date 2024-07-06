@@ -19,7 +19,7 @@ import os
 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from backend.controller import Controller
+from controller.controller import Controller
 
 class LoginWindow(Screen):
     def login(self):
@@ -81,7 +81,7 @@ class PopupRegister(Popup):
 
 class FragenApp(App):
     def build(self):
-        kv = Builder.load_file("my.kv")
+        kv = Builder.load_file("frontend/my.kv")
         self.icon = "sb.jpg"
         return kv
 
