@@ -61,11 +61,16 @@ class QuizWindow(Screen):
         self.ids.frageTitel_label.text = Controller.question.title
         self.ids.frage_label.text = Controller.question.questionText
         self.ids.next_question.bind(on_release=self.reveal_answer)
+        self.ids.perfect_answer_label.opacity = 0
+        self.ids.Quiz_antwort_input.text =""
+
 
     def reveal_answer(self, instance):
        self.ids.perfect_answer_label.text = Controller.question.getPerfectAnswer()
        self.ids.points_label.text = "Punkte: " + Controller.get_points(user_answer=self.ids.Quiz_antwort_input.text)
        self.ids.next_question.bind(on_release=self.next_question)
+       self.ids.perfect_answer_label.opacity = 1
+
 
 class PopupRegister(Popup):
     def reg_user(self):
