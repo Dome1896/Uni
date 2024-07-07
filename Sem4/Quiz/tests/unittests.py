@@ -134,7 +134,7 @@ class TestUserRegister(unittest.TestCase):
         '''
         db = Database()
         user_register = UserRegister(username="test", password="pw")
-        expected_output = {"username": "test", "totalPoints": 0, "password": "password"}
+        expected_output = {"username": "test", "totalPoints": 0, "password": "pw"}
         
         self.assertEqual(user_register.makeRequestBody(), expected_output)
         db.setDataToDB(user_register)
