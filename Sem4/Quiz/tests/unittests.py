@@ -121,11 +121,11 @@ class TestUserRegister(unittest.TestCase):
         '''
         # vergebener Name
         user_register = UserRegister(username= "vergebenerUsername", password="pw")
-        self.assertFalse(user_register.__isUsernameAvailable())
+        self.assertFalse(user_register.isUsernameAvailable())
 
         # freier Name
         user_register.username = "freierUsername"
-        self.assertTrue(user_register.__isUsernameAvailable())
+        self.assertTrue(user_register.isUsernameAvailable())
 
     def test_makeRequestBody(self):
         '''
@@ -137,7 +137,8 @@ class TestUserRegister(unittest.TestCase):
         expected_output = {"username": "test", "totalPoints": 0, "password": "pw"}
         
         self.assertEqual(user_register.makeRequestBody(), expected_output)
-        db.setDataToDB(user_register)
+        if user_register.registerSuc:
+            db.setDataToDB(user_register)
 
 
 class TestUser(unittest.TestCase):
@@ -152,10 +153,9 @@ class TestUser(unittest.TestCase):
         
         user.updateTotalPointsInDB(questionPoints, db)
         
-        if self.assertEqual(user.totalPoints, 20):
-            # zurücksetzen der Punkte
-            # @TODO hier muss ich am besten eine lösch Methode für die Datenbank haben, damit ich den User ganz löschen kann 
-            db.updateOneValue(tableName="users", attributeKey="username", attributeValue="test", newAttributeKey="totalPoints", newAttributeValue="10")
+        self.assertEqual(user.get_total_points(), 20)
+        # zurücksetzen der Punkte 
+        db.del_one_entry(tableName="users", attributeKey="username", attributeValue="test")
 
 
 

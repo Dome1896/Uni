@@ -21,7 +21,7 @@ class UserRegister:
        
         self.username = username
         self.password = password
-        if self.__isUsernameAvailable():
+        if self.isUsernameAvailable():
             self.__totalPoints = 0
             self.registerSuc = True
         else: self.registerSuc = False
@@ -30,7 +30,7 @@ class UserRegister:
 
 
     # Wenn der Username bereits in der Datenbank gefunden werden kann, dann return False 
-    def __isUsernameAvailable(self):
+    def isUsernameAvailable(self):
         db = Database()
         response  = db.getDataFromTableWithFilter("users", "username", self.username)
         if len(response) != 0:
