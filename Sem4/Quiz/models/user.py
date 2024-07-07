@@ -1,4 +1,4 @@
-from backend.database import Database
+from models.database import Database
 class User:
     def __init__(self, username, password):
         db = Database()

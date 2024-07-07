@@ -1,6 +1,6 @@
 import requests
 from configparser import ConfigParser
-from supabase import *
+
 class Database:
     
     def __init__(self):
@@ -36,7 +36,7 @@ class Database:
     def __getApiKey(self):
         cfp = ConfigParser()
         try:
-            cfp.read("backend/config.ini")
+            cfp.read("config.ini")
             self.__apikey = cfp.get("Database", "apikey")
         except:
             print("config.ini is missing or wrong")
@@ -44,7 +44,7 @@ class Database:
     def __getUrl(self):
         cfp = ConfigParser()
         try:
-            cfp.read("backend/config.ini")
+            cfp.read("config.ini")
             self.__url = cfp.get("Database", "url")
         except:
             print("config.ini is missing or wrong")
@@ -52,7 +52,7 @@ class Database:
     def __getPassword(self):
         cfp = ConfigParser()
         try:
-            cfp.read("backend/config.ini")
+            cfp.read("config.ini")
             self.__password = cfp.get("Database", "password")
         except:
             print("config.ini is missing or wrong")
