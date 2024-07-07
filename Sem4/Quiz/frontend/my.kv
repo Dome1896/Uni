@@ -181,6 +181,14 @@ ScreenManager:
             size_hint:(0.1,0.05)
             on_release: 
                 root.generate_answer(self)
+        
+        Button:
+            id: save_question
+            pos_hint: {"center_x": 0.8, "center_y": 0.03}
+            text: "Frage Speichern"
+            size_hint:(0.1,0.05)
+            on_release: 
+                root.save_data(self)
 
 <QuizWindow>:
     name: "quiz"
