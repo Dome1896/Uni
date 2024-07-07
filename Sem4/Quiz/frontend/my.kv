@@ -25,7 +25,7 @@ ScreenManager:
             size_hint:(0.2,0.2)
 
         Button:
-            pos_hint: {"center_x": 0.5, "center_y": 0.25}
+            pos_hint: {"center_x": 0.5, "center_y": 0.35}
             size_hint:(0.25,0.07)
             background_color: 0,0,0,0
             on_release:
@@ -36,10 +36,10 @@ ScreenManager:
                 source: "button.png"
                 center_x: self.parent.center_x
                 center_y: self.parent.center_y
-                size:(200,200)
+                size:(300,300)
 
         Button:
-            pos_hint: {"center_x": 0.5, "center_y": 0.15}
+            pos_hint: {"center_x": 0.5, "center_y": 0.25}
             size_hint:(0.2,0.05)
             background_color: 0,0,0,0
             on_release:
@@ -49,7 +49,7 @@ ScreenManager:
                 source: "add_questions.png"
                 center_x: self.parent.center_x
                 center_y: self.parent.center_y
-                size:(175,175)   
+                size:(280,280)   
         Label:
             id: welcome_msg
             font_name: "Impact"
@@ -65,78 +65,128 @@ ScreenManager:
 
 <LoginWindow>:
     name: "login"
-    canvas.before:
-        Color:
-            rgba: 5/255,0/255,25/255,1
-        Rectangle:
-            size: self.size
-            pos: self.pos
-
     FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 5/255,0/255,25/255,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        FloatLayout:
+            pos_hint: {'x': 0, 'y': 0}
+            size_hint: 0.35, 1
+            canvas.before:
+                Color:
+                    rgba: (247/255, 247/255 , 247/255, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+            Label:
+                text: "Sign In"
+                font_name: "Impact"
+                color: (0, 0, 0, 1)
+                font_size: 20
+                size_hint: None, None
+                size: self.texture_size
+                pos_hint: {"center_x": 0.5, "y": 0.73}
+
+            TextInput:
+                id: username
+                hint_text: "Username"
+                size_hint: 0.8, None
+                height: 40
+                pos_hint: {'center_x': 0.5, 'center_y': 0.67}
+
+            TextInput:
+                id: password
+                hint_text: "Password"
+                size_hint: 0.8, None
+                height: 40
+                pos_hint: {'center_x': 0.5, 'center_y': 0.57}
+
+            Button:
+                id: signupButton
+                text: "Sign Up"
+                size_hint: 0.5, None
+                height: 40
+                pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+                on_release: app.show_register_popup()
+
+            Button: 
+                text: "Log In"
+                size_hint: 0.5, None
+                height: 40
+                pos_hint: {'center_x': 0.5, 'center_y': 0.33}
+                background_color: 0,0,0,0
+                on_release: 
+                    root.login()
+                    app.root.current = "main"
+                    root.manager.transition.direction = "left"
+                Image: 
+                    source: "arrow-right.png"
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+                    size: 85,100
+
+
+
         Image:
             source: "zicke.jpg"
-            pos_hint: {"center_x": 0.5, "center_y": 0.75}
-            size_hint:( 0.45,0.45)
+            pos_hint: {"center_x": 0.7, "center_y": 0.6}
+            size_hint: (0.45, 0.45)
+
         Label:
             id: slogan_msg
             text: "Quizy – Intelligente Unterhaltung."
             font_name: "Impact"
-            pos_hint: {"center_x": 0.5, "center_y": 0.52}  
-        TextInput:
-            id: username
-            hint_text: "Enter Username"
-            pos_hint: {'center_x': 0.5, 'y': 0.35}
-            size_hint: 0.25, 0.1
-        
-        TextInput:
-            id: password
-            hint_text: "Enter Password"
-            pos_hint: {'center_x': 0.5, 'y': 0.2}
-            size_hint: 0.25, 0.1
-        Button:
-            id: signupButton
-            text: "Sign Up"
-            pos_hint: {"center_x": 1, "center_y": 0.5}
-            size_hint:(0.2,0.1)
-            on_release: app.show_register_popup()
-        Button: 
-            pos_hint:{"center_x": 0.5 , "center_y": 0.1}
-            size_hint:(0.1,0.05)
-            on_release: 
-                root.login()
-                app.root.current = "main"
-                root.manager.transition.direction = "left"
-
+            pos_hint: {"center_x": 0.7, "center_y": 0.35}
 <PopupRegister>:
     title: "Register"
-    size_hint: 0.75, 0.75
+    size_hint: 0.6, 0.5  # Adjusted size to make it shorter
     auto_dismiss: True
     BoxLayout:
         orientation: 'vertical'
-        padding: 10
-        spacing: 10
+        padding: [20, 20, 20, 20]  # Added padding for better spacing
+        spacing: 15  # Increased spacing between elements
+        
         Label:
-            id: message
-            text: "Test"
+            text: "Register"
             font_name: "Impact"
-            pos_hint: {"center_x": 0.5, "center_y": 0.52}  
+            font_size: 24
+            pos_hint: {"center_x": 0.5, "y": 0.8}
+
         TextInput:
             id: username
             hint_text: "Enter Username"
-            size_hint_y: None
+            size_hint: 0.6, None
             height: 40
+            pos_hint: {"center_x": 0.5, "y": 0.65}
+            multiline: False  # Ensure single-line input
+
         TextInput:
             id: password
             hint_text: "Enter Password"
-            size_hint_y: None
+            size_hint: 0.6, None
             height: 40
+            pos_hint: {"center_x": 0.5, "y": 0.5}
+            multiline: False  # Ensure single-line input
+            password: True  # Mask the password input
+
         Button:
             id: addUser
             text: "Sign Up"
-            size_hint_y: None
+            size_hint: 0.4, None
             height: 40
+            pos_hint: {"center_x": 0.5}
             on_release: 
                 root.reg_user()
+                root.dismiss()
+
+        Widget:
+            size_hint_y: None
+            height: 10  # Add some space at the bottom
 
 
 <AddQuestionsWindow>:
@@ -153,7 +203,7 @@ ScreenManager:
             pos_hint: {"center_x": 0.5, "center_y": 0.75}
             size_hint:( 0.35,0.35)
         Button:
-            pos_hint: {"center_x": 0.5, "center_y": 0.7}
+            pos_hint: {"center_x": 0.5, "center_y": 0.95}
             size_hint:(0.1,0.05)
             on_release: 
                 app.root.current = "main"
@@ -161,17 +211,18 @@ ScreenManager:
         TextInput:
             id: frageTitel_input
             hint_text: "Titel der Frage eingeben"
-            pos_hint: {'center_x': 0.5, 'y': 0.4}
+            pos_hint: {'center_x': 0, 'y': 0}
+            opacity: 0
             size_hint: 0.25, 0.1
         TextInput:
             id: frage_input
             hint_text: "Frage eingeben"
-            pos_hint: {'center_x': 0.5, 'y': 0.25}
+            pos_hint: {'center_x': 0.5, 'y': 0.4}
             size_hint: 0.25, 0.1
         TextInput:
             id: antwort_input
             hint_text: "Antwort eingeben"
-            pos_hint: {'center_x': 0.5, 'y': 0.1}
+            pos_hint: {'center_x': 0.5, 'y': 0.2}
             size_hint: 0.25, 0.1
 
         Button:
@@ -181,6 +232,14 @@ ScreenManager:
             size_hint:(0.1,0.05)
             on_release: 
                 root.generate_answer(self)
+        
+        Button:
+            id: save_question
+            pos_hint: {"center_x": 0.8, "center_y": 0.03}
+            text: "Frage Speichern"
+            size_hint:(0.1,0.05)
+            on_release: 
+                root.save_data(self)
 
 <QuizWindow>:
     name: "quiz"
@@ -201,7 +260,8 @@ ScreenManager:
             text: "FrageTitel"
             font_name: "Impact"
             pos_hint: {"center_x": 0.5, "center_y": 0.69}
-            font_size: 28
+            font_size: 0
+            color: (0,0,0,0)
             halign: "center"
             valign: "middle"
             text_size: self.size       
@@ -209,7 +269,16 @@ ScreenManager:
             id: frage_label
             text: "Frage"
             font_name: "Impact"
-            pos_hint: {"center_x": 0.5, "center_y": 0.53} 
+            pos_hint: {"center_x": 0.5, "center_y": 0.6} 
+            font_size: 28 
+            halign: "center"
+            valign: "middle"
+            text_size: self.size 
+        Label:
+            text: "hier könnte ihre werbung stehen"
+            id: perfect_answer_label
+            font_name: "Impact"
+            pos_hint: {"center_x": 0.5, "center_y": 0.4} 
             font_size: 28 
             halign: "center"
             valign: "middle"
@@ -247,12 +316,3 @@ ScreenManager:
             font_name: "Impact"
             pos_hint: {"center_x": 0.2, "center_y": 0.77} 
             font_size: 28  
-        Label:
-            text: "hier könnte ihre werbung stehen"
-            id: perfect_answer_label
-            font_name: "Impact"
-            pos_hint: {"center_x": 0.5, "center_y": 0.33} 
-            font_size: 28 
-            halign: "center"
-            valign: "middle"
-            text_size: self.size 
