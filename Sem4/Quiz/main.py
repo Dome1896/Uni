@@ -1,7 +1,14 @@
 from frontend.app import * 
+from tests.unittests import *
+
+if __name__ == '__main__':
+    unittest.main()
+
+#FragenApp().run()
 
 
-FragenApp().run()
+
+
 # apiHandler = APIHandler()
 # db = Database()
 # ut = Unittest()
