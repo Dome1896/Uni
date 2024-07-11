@@ -76,7 +76,7 @@ class QuizWindow(Screen):
 class PopupRegister(Popup):
     def reg_user(self):
         if Controller.user_reg(self.ids.username.text, self.ids.password.text):
-            self.ids.message.text = "Registrierung erfolgreich.\nAutomatischer Login"
+            self.ids.message.text = "Anmeldung..."
             Controller.user_login(self.ids.username.text, self.ids.password.text)
             app = App.get_running_app()
             app.root.current = "main"
