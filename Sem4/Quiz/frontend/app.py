@@ -26,6 +26,10 @@ class LoginWindow(Screen):
     def login(self):
         if not Controller.user_login(self.ids.username.text, self.ids.password.text):
             self.ids.slogan_msg.text = "Login nicht möglich"
+        else:
+            app = App.get_running_app() 
+            app.root.current = "main"  
+            self.manager.transition.direction = "left"  
 
 class MainWindow(Screen):
     def __init__(self, **kwargs):
