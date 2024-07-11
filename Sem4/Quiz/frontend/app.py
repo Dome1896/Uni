@@ -91,7 +91,7 @@ class FragenApp(App):
         self.icon = "sb.jpg"
         # Resizen des Windows macht die App leider unnormal langsam beim Launch.
         # Das liegt tastächlich am Window import, keine AHnung woher das kommt alleeee
-        #Window.size = (300, 100)
+        #Window.size = (1600, 500)
         return kv
 
     def show_register_popup(self):
