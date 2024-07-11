@@ -15,7 +15,7 @@ class User:
         
 
     def get_total_points(self):
-        return self.__totalPointsS
+        return self.__totalPoints
 
     def updateTotalPointsInDB(self, questionPoints, database : Database):
         self.__totalPoints += questionPoints 
