@@ -5,7 +5,13 @@ class User:
         self.username = username
         self.password = password
         self.tableName = "users"
-        self.__totalPoints = db.getDataFromTableWithFilter(self.tableName, "username", self.username)[0]["totalPoints"]
+        userdata = db.getDataFromTableWithFilter(tableName=self.tableName, attributeKey="username", attributeValue=self.username)
+        if self.password == userdata[0]["password"]:
+            self.__totalPoints = db.getDataFromTableWithFilter(self.tableName, "username", self.username)[0]["totalPoints"]
+        else:
+            raise Exception("")  
+  
+
         
 
     def get_total_points(self):
