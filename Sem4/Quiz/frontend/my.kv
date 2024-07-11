@@ -51,10 +51,15 @@ ScreenManager:
 
         Button:
             pos_hint: {"center_x": 0, "center_y": 0.5}
-            size_hint:(0.1,0.1)
+            size_hint:(0.07,0.1)
             on_release: 
                 app.root.current = "login"
                 root.manager.transition.direction = "right"
+            Image:
+                source: "enter.png"
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+                size: 50,50
                 
 
 <LoginWindow>:
