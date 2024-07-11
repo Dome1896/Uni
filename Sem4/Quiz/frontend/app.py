@@ -27,9 +27,13 @@ class LoginWindow(Screen):
         if not Controller.user_login(self.ids.username.text, self.ids.password.text):
             self.ids.slogan_msg.text = "Login nicht möglich"
         else:
-            app = App.get_running_app() 
+            app = App.get_running_app()
+            # Anpassen der Willkommennachricht in dem Menü
+            main_window = app.root.get_screen('main')
+            main_window.ids.welcome_msg.text = f"Willkommen, {self.ids.username.text}.\nDu hast aktuell: {Controller.user.get_total_points()} Punkte!"
+
             app.root.current = "main"  
-            self.manager.transition.direction = "left"  
+            self.manager.transition.direction = "left"
 
 class MainWindow(Screen):
     def __init__(self, **kwargs):
@@ -73,6 +77,16 @@ class QuizWindow(Screen):
        self.ids.points_label.text = "Punkte: " + Controller.get_points(user_answer=self.ids.Quiz_antwort_input.text)
        self.ids.next_question.bind(on_release=self.next_question)
        self.ids.perfect_answer_label.opacity = 1
+
+    def get_back_to_menu(self):
+        app = App.get_running_app()
+
+        # Anpassen der Willkommennachricht in dem Menü
+        main_window = app.root.get_screen('main')
+        main_window.ids.welcome_msg.text = f"Willkommen, {Controller.user.username}.\nDu hast aktuell: {Controller.user.get_total_points()} Punkte!"
+
+        app.root.current = "main"  
+        self.manager.transition.direction = "right"
 
 
 class PopupRegister(Popup):

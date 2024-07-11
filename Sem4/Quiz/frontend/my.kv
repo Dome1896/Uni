@@ -300,8 +300,7 @@ ScreenManager:
             pos_hint: {"center_x": 0.1, "center_y": 0.05}
             size_hint:(0.1,0.05)
             on_release: 
-                app.root.current = "main"
-                root.manager.transition.direction = "right"
+                root.get_back_to_menu()
         Button:
             id: next_question
             text: "next question"
