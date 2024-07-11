@@ -43,8 +43,7 @@ class AddQuestionsWindow(Screen):
         perfect_answer = Controller.create_question(title=title, questionText=question_input)
         self.ids.antwort_input.text = perfect_answer
         # Anpassen des Buttons
-        self.ids.generate_or_save_question.bind(on_release=self.save_data)
-        self.ids.generate_or_save_question.text = "Frage speichern"
+       
 
     def save_data(self, instance):
         # Speichern der Frage
@@ -53,8 +52,7 @@ class AddQuestionsWindow(Screen):
         self.ids.frage_input.text = ""
         self.ids.antwort_input.text = ""  
         # Anpassen des Buttons
-        self.ids.generate_or_save_question.text = "Antwort generieren"
-        self.ids.generate_or_save_question.bind(on_release=self.generate_answer)
+        
 
 class QuizWindow(Screen):
     def next_question(self, instance):
