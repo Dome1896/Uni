@@ -36,10 +36,10 @@ ScreenManager:
                 source: "button.png"
                 center_x: self.parent.center_x
                 center_y: self.parent.center_y
-                size:(300,300)
+                size:(230,230)
 
         Button:
-            pos_hint: {"center_x": 0.5, "center_y": 0.25}
+            pos_hint: {"center_x": 0.5, "center_y": 0.2}
             size_hint:(0.2,0.05)
             background_color: 0,0,0,0
             on_release:
@@ -49,7 +49,7 @@ ScreenManager:
                 source: "add_questions.png"
                 center_x: self.parent.center_x
                 center_y: self.parent.center_y
-                size:(280,280)   
+                size:(200,200)   
         Label:
             id: welcome_msg
             font_name: "Impact"
@@ -127,7 +127,7 @@ ScreenManager:
                     source: "arrow-right.png"
                     center_x: self.parent.center_x
                     center_y: self.parent.center_y
-                    size: 85,100
+                    size: 70,70
 
 
 
@@ -162,7 +162,7 @@ ScreenManager:
             hint_text: "Enter Username"
             size_hint: 0.6, None
             height: 40
-            pos_hint: {"center_x": 0.5, "y": 0.65}
+            pos_hint: {"center_x": 0.5, "y": 0.55}
             multiline: False  # Ensure single-line input
 
         TextInput:
@@ -170,7 +170,7 @@ ScreenManager:
             hint_text: "Enter Password"
             size_hint: 0.6, None
             height: 40
-            pos_hint: {"center_x": 0.5, "y": 0.5}
+            pos_hint: {"center_x": 0.5, "y": 0.4}
             multiline: False  # Ensure single-line input
             password: True  # Mask the password input
 
@@ -217,26 +217,34 @@ ScreenManager:
             id: frage_input
             hint_text: "Frage eingeben"
             pos_hint: {'center_x': 0.5, 'y': 0.4}
-            size_hint: 0.25, 0.1
+            size_hint: 0.33, 0.1
         TextInput:
             id: antwort_input
             hint_text: "Antwort eingeben"
-            pos_hint: {'center_x': 0.5, 'y': 0.2}
-            size_hint: 0.25, 0.1
+            pos_hint: {'center_x': 0.5, 'y': 0.23}
+            size_hint: 0.33, 0.1
 
         Button:
             id: generate_or_save_question
-            pos_hint: {"center_x": 0.5, "center_y": 0.03}
-            text: "Antwort generieren lassen"
-            size_hint:(0.1,0.05)
+            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            #text: "Antwort generieren lassen"
+            background_color: 0,0,0,0
+            size_hint:(0.1,0.1)
+            font_size: 14
             on_release: 
                 root.generate_answer(self)
+            Image:
+                source: "logo_try.jpeg"
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+                size: 55,55
         
         Button:
             id: save_question
-            pos_hint: {"center_x": 0.8, "center_y": 0.03}
+            pos_hint: {"center_x": 0.8, "center_y": 0.1}
             text: "Frage Speichern"
-            size_hint:(0.1,0.05)
+            size_hint:(0.15,0.1)
+            font_size: 14
             on_release: 
                 root.save_data(self)
 
@@ -258,7 +266,7 @@ ScreenManager:
             id: frageTitel_label
             text: "FrageTitel"
             font_name: "Impact"
-            pos_hint: {"center_x": 0.5, "center_y": 0.69}
+            pos_hint: {"center_x": 0.5, "center_y": 0.74}
             font_size: 0
             color: (0,0,0,0)
             halign: "center"
@@ -268,7 +276,7 @@ ScreenManager:
             id: frage_label
             text: "Frage"
             font_name: "Impact"
-            pos_hint: {"center_x": 0.5, "center_y": 0.6} 
+            pos_hint: {"center_x": 0.5, "center_y": 0.67} 
             font_size: 28 
             halign: "center"
             valign: "middle"
@@ -277,7 +285,7 @@ ScreenManager:
             text: "hier könnte ihre werbung stehen"
             id: perfect_answer_label
             font_name: "Impact"
-            pos_hint: {"center_x": 0.5, "center_y": 0.4} 
+            pos_hint: {"center_x": 0.5, "center_y": 0.42} 
             font_size: 28 
             halign: "center"
             valign: "middle"
@@ -313,5 +321,5 @@ ScreenManager:
             text: "Erreichte Punktzahl:"
             id: points_label
             font_name: "Impact"
-            pos_hint: {"center_x": 0.2, "center_y": 0.77} 
-            font_size: 28  
+            pos_hint: {"center_x": 0.2, "center_y": 0.82} 
+            font_size: 20  
