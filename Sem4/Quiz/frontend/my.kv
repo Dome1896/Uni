@@ -18,12 +18,6 @@ ScreenManager:
             source: "logoo.png"
             pos_hint: {"center_x": 0.5, "center_y": 0.75}
             size_hint:( 0.35,0.35)
-
-        Image:
-            source: "sb.jpg"
-            pos_hint: {"center_y": 0.9}
-            size_hint:(0.2,0.2)
-
         Button:
             pos_hint: {"center_x": 0.5, "center_y": 0.35}
             size_hint:(0.25,0.07)
@@ -102,6 +96,7 @@ ScreenManager:
             TextInput:
                 id: password
                 hint_text: "Password"
+                password: True
                 size_hint: 0.8, None
                 height: 40
                 pos_hint: {'center_x': 0.5, 'center_y': 0.57}
@@ -128,19 +123,16 @@ ScreenManager:
                     center_x: self.parent.center_x
                     center_y: self.parent.center_y
                     size: 70,70
-
-
-
         Image:
-            source: "zicke.jpg"
-            pos_hint: {"center_x": 0.7, "center_y": 0.6}
+            source: "logoo.png"
+            pos_hint: {"center_x": 0.67, "center_y": 0.6}
             size_hint: (0.45, 0.45)
 
         Label:
             id: slogan_msg
             text: "Quizy – Intelligente Unterhaltung."
             font_name: "Impact"
-            pos_hint: {"center_x": 0.7, "center_y": 0.35}
+            pos_hint: {"center_x": 0.67, "center_y": 0.35}
 <PopupRegister>:
     title: "Register"
     size_hint: 0.6, 0.5  # Adjusted size to make it shorter
@@ -202,11 +194,16 @@ ScreenManager:
             pos_hint: {"center_x": 0.5, "center_y": 0.75}
             size_hint:( 0.35,0.35)
         Button:
-            pos_hint: {"center_x": 0.5, "center_y": 0.95}
+            pos_hint: {"center_x": 0.5, "center_y": 0.96}
             size_hint:(0.1,0.05)
             on_release: 
                 app.root.current = "main"
                 root.manager.transition.direction = "down"
+            Image:
+                source: "up-arrow.png"
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+                size: 25,25
         TextInput:
             id: frageTitel_input
             hint_text: "Titel der Frage eingeben"
@@ -277,16 +274,16 @@ ScreenManager:
             text: "Frage"
             font_name: "Impact"
             pos_hint: {"center_x": 0.5, "center_y": 0.67} 
-            font_size: 28 
+            font_size: 22
             halign: "center"
             valign: "middle"
             text_size: self.size 
         Label:
-            text: "hier könnte ihre werbung stehen"
+            text: ""
             id: perfect_answer_label
             font_name: "Impact"
-            pos_hint: {"center_x": 0.5, "center_y": 0.42} 
-            font_size: 28 
+            pos_hint: {"center_x": 0.5, "center_y": 0.45} 
+            font_size: 22
             halign: "center"
             valign: "middle"
             text_size: self.size 
@@ -294,25 +291,30 @@ ScreenManager:
         TextInput:
             id: Quiz_antwort_input
             hint_text: "Antwort eingeben"
-            pos_hint: {'center_x': 0.5, 'y': 0.1}
+            pos_hint: {'center_x': 0.5, 'y': 0.13}
             size_hint: 0.25, 0.1
         Button:
             pos_hint: {"center_x": 0.1, "center_y": 0.05}
             size_hint:(0.1,0.05)
             on_release: 
                 root.get_back_to_menu()
+            Image:
+                source: "arrow-left.png"
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+                size: 25,25
         Button:
             id: next_question
             text: "next question"
             pos_hint: {"center_x": 0.5, "center_y": 0.05}
-            size_hint:(0.1,0.05)
+            size_hint:(0.15,0.05)
             on_release: 
                 root.next_question(self)
         Button:
             id: reveal_answer
             text: "rate answer"
-            pos_hint: {"center_x": 0.8, "center_y": 0.05}
-            size_hint:(0.1,0.05)
+            pos_hint: {"center_x": 0.84, "center_y": 0.05}
+            size_hint:(0.15,0.05)
             on_release: 
                 root.reveal_answer(self)
             
@@ -320,5 +322,5 @@ ScreenManager:
             text: "Erreichte Punktzahl:"
             id: points_label
             font_name: "Impact"
-            pos_hint: {"center_x": 0.2, "center_y": 0.82} 
-            font_size: 20  
+            pos_hint: {"center_x": 0.13, "center_y": 0.82} 
+            font_size: 18 
