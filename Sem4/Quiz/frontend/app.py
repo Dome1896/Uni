@@ -12,7 +12,6 @@ from kivy.uix.popup import Popup
 from kivy.animation import Animation
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
-#from kivy.core.window import Window
 from kivy.uix.scrollview import ScrollView
 import sys
 import os
@@ -104,10 +103,8 @@ class PopupRegister(Popup):
 class FragenApp(App):
     def build(self):
         kv = Builder.load_file("frontend/my.kv")
-        self.icon = "sb.jpg"
-        # Resizen des Windows macht die App leider unnormal langsam beim Launch.
-        # Das liegt tastächlich am Window import, keine AHnung woher das kommt alleeee
-        #Window.size = (1600, 500)
+        self.icon = "logoo.png"
+        self.title = "Quizy - Intelligente Unterhaltung"
         return kv
 
     def show_register_popup(self):
