@@ -5,7 +5,6 @@ from models.apihandler import APIHandler
 from models.database import Database
 from models.user import * 
 
-from datetime import timedelta
 import time
 
 class TestQuestion(unittest.TestCase):
@@ -156,7 +155,3 @@ class TestUser(unittest.TestCase):
         self.assertEqual(user.get_total_points(), 20)
         # zurücksetzen der Punkte 
         db.del_one_entry(tableName="users", attributeKey="username", attributeValue="test")
-
-
-
-

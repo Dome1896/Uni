@@ -22,10 +22,11 @@ class APIHandler:
         completion = self.client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-            {"role": "system", "content": "Just Answer with a Number between 0 and 100"},
-            {"role": "user", "content": f"PerfectAnswer: {question.getPerfectAnswer()} \n Users Answer: {userAnswer} \n For how much percentage does the User Answer fits the Perfect Answer"
-             
-             }
+            #{"role": "system", "content": "Just Answer with a Number between 0 and 100"},
+            #{"role": "user", "content": f"PerfectAnswer: {question.getPerfectAnswer()} \n Users Answer: {userAnswer} \n How closely does the User Answer match the Perfect Answer in percentage?"}
+
+            {"role": "system", "content": "You are a scoring system that evaluates how closely a user's answer matches a perfect answer. Respond with a number between 0 and 100 that represents the percentage match."},
+            {"role": "user", "content": f"Perfect Answer: {question.getPerfectAnswer()} \n User's Answer: {userAnswer} \n On a scale from 0 to 100, how closely does the User's Answer match the Perfect Answer in percentage? Provide a number only."}     
                     ]
             )
         
