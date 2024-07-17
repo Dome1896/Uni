@@ -132,12 +132,16 @@ class TestUserRegister(unittest.TestCase):
         Test: Prüft die Richtigkeit des RequestBody
         '''
         db = Database()
-        user_register = UserRegister(username="test", password="pw")
+        user_register = UserRegister("", "")
+        user_register.username="test"
+        user_register.password = "pw"
+        user_register.__totalPoints = 0
         expected_output = {"username": "test", "totalPoints": 0, "password": "pw"}
-        
-        self.assertEqual(user_register.makeRequestBody(), expected_output)
+        # anlegen der Nutzers in der Datenbank
         if user_register.registerSuc:
-            db.setDataToDB(user_register)
+            db.setDataToDB(user_register)        
+        self.assertEqual(user_register.makeRequestBody(), expected_output)
+
 
 
 class TestUser(unittest.TestCase):

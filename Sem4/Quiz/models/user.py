@@ -9,7 +9,7 @@ class User:
         if self.password == userdata[0]["password"]:
             self.__totalPoints = db.getDataFromTableWithFilter(self.tableName, "username", self.username)[0]["totalPoints"]
         else:
-            raise Exception("")  
+            raise Exception("Falsches Passwort")  
   
 
         
